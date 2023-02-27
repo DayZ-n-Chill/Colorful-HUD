@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{53A0EAF50FD55499}Colorful-HUD/gui/textures/InHands.edds"
+ Author "neo"
+ ChangeDate -214946243
+ Configurations {
+  PNGResourceClass PC {
+   SourceFile "InHands.png"
+  }
+  PNGResourceClass XBOX_ONE : PC {
+  }
+  PNGResourceClass PS4 : PC {
+  }
+  PNGResourceClass LINUX : PC {
+  }
+ }
+}

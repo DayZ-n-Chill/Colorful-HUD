@@ -1,0 +1,5 @@
+//<'Colorful-HUD.pbo' properties via Mikero's dos tools, dll version 9.15>
+product=dayz ugc;
+prefix=Colorful-HUD;
+//PboType=Arma Addon;
+//</properties>

@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{B3792CD9CBC2C60C}Colorful-HUD/gui/textures/CompassBG.edds"
+ Author "neo"
+ ChangeDate -214946243
+ Configurations {
+  PNGResourceClass PC {
+   SourceFile "CompassBG.png"
+  }
+  PNGResourceClass XBOX_ONE : PC {
+  }
+  PNGResourceClass PS4 : PC {
+  }
+  PNGResourceClass LINUX : PC {
+  }
+ }
+}

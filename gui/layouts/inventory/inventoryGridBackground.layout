@@ -1,0 +1,143 @@
+PanelWidgetClass GridBck {
+ visible 1
+ clipchildren 0
+ inheritalpha 0
+ ignorepointer 0
+ color 0.0745 0.0706 0.0627 0
+ position 0 0
+ size 54 54
+ hexactpos 1
+ vexactpos 1
+ hexactsize 1
+ vexactsize 1
+ style rover_sim_colorable
+ {
+  PanelWidgetClass LabelTR {
+   visible 0
+   ignorepointer 1
+   color 0.0745 0.0706 0.0627 0
+   position -0.21073 0.10537
+   size 54 54
+   halign right_ref
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   priority 606
+   {
+    ImageWidgetClass LabelTROutline {
+     visible 1
+     ignorepointer 1
+     color 0.4235 0.4235 0.3843 0
+     position 0 0
+     size 1 1
+     halign center_ref
+     valign center_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 0
+     priority 600
+     imageTexture "{57DD1B88497A88B8}Colorful-UI/gui/textures/inventory/NumberSqr.edds"
+     mode blend
+     "src alpha" 1
+     "no wrap" 1
+     {
+      TextWidgetClass Label1 {
+       visible 1
+       inheritalpha 0
+       ignorepointer 1
+       size 15 15
+       halign right_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       fixaspect inside
+       priority 500
+       style Light
+       text "9"
+       font "gui/fonts/MetronLight12"
+       "exact text" 0
+       text_proportion 0.9
+       "text halign" center
+       "text valign" center
+      }
+     }
+    }
+   }
+  }
+  PanelWidgetClass LabelCC {
+   visible 1
+   ignorepointer 1
+   color 0.0745 0.0706 0.0627 0
+   size 15 15
+   halign right_ref
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   priority 606
+   style rover_sim_colorable
+   {
+    ImageWidgetClass LabelCCOutline {
+     visible 1
+     ignorepointer 1
+     color 0.4235 0.4235 0.3843 0
+     position 0 0
+     size 1 1
+     halign center_ref
+     valign center_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 0
+     priority 600
+     imageTexture "{57DD1B88497A88B8}Colorful-UI/gui/textures/inventory/NumberSqr.edds"
+     mode blend
+     "src alpha" 1
+     "no wrap" 1
+     stretch 1
+     {
+      TextWidgetClass Label2 {
+       visible 1
+       inheritalpha 0
+       ignorepointer 1
+       size 15 15
+       halign right_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       fixaspect inside
+       priority 500
+       style Light
+       text "9"
+       font "gui/fonts/MetronLight12"
+       "exact text" 0
+       text_proportion 0.9
+       "text halign" center
+       "text valign" center
+      }
+     }
+    }
+   }
+  }
+  ImageWidgetClass QuickSlotBG {
+   visible 1
+   ignorepointer 1
+   position 0 0
+   size 1 1
+   hexactpos 1
+   vexactpos 1
+   hexactsize 0
+   vexactsize 0
+   image0 ""
+   imageTexture "{E09D3F50261B2ACC}Colorful-HUD/gui/textures/QuickSlotBG.edds"
+   mode blend
+   "src alpha" 1
+   "no wrap" 1
+   stretch 1
+  }
+ }
+}

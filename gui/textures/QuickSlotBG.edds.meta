@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{E09D3F50261B2ACC}Colorful-HUD/gui/textures/QuickSlotBG.edds"
+ Author "neo"
+ ChangeDate -1829736899
+ Configurations {
+  PNGResourceClass PC {
+   SourceFile "QuickSlotBG.png"
+  }
+  PNGResourceClass XBOX_ONE : PC {
+  }
+  PNGResourceClass PS4 : PC {
+  }
+  PNGResourceClass LINUX : PC {
+  }
+ }
+}
