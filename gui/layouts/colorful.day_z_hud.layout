@@ -415,6 +415,103 @@ FrameWidgetClass HudFrameWidget {
    hexactsize 0
    vexactsize 0
    {
+    FrameWidgetClass GameStatusIcons {
+     visible 1
+     ignorepointer 1
+     position -60.4736 156.925
+     size 83.78951 518.91406
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     {
+      ImageWidgetClass HighPingA {
+       visible 0
+       ignorepointer 1
+       color 0.7961 0.5961 0.1922 1
+       position 0 13
+       size 32 32
+       halign center_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       image0 "set:dayz_gui image:conPing"
+       imageTexture "{C139E49FD0ECAF9E}gui/imagesets/dayz_gui@2x.edds"
+       mode blend
+       "src alpha" 1
+       "no wrap" 0
+       stretch 0
+      }
+      ImageWidgetClass HighPingB {
+       visible 0
+       ignorepointer 1
+       color 1 0 0 1
+       position 0 13
+       size 32 32
+       halign center_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       image0 "set:dayz_gui image:conPing"
+       imageTexture "{C139E49FD0ECAF9E}gui/imagesets/dayz_gui@2x.edds"
+       mode blend
+       "src alpha" 1
+       "no wrap" 0
+      }
+      ImageWidgetClass LowServerPerfA {
+       visible 0
+       ignorepointer 1
+       color 0.7961 0.5961 0.1922 1
+       position 0 91
+       size 32 32
+       halign center_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       image0 "set:dayz_gui image:conServer"
+       imageTexture "{C139E49FD0ECAF9E}gui/imagesets/dayz_gui@2x.edds"
+       mode blend
+       "src alpha" 1
+      }
+      ImageWidgetClass LowServerPerfB {
+       visible 0
+       ignorepointer 1
+       color 1 0 0 1
+       position 0 91
+       size 32 32
+       halign center_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       image0 "set:dayz_gui image:conServer"
+       imageTexture "{C139E49FD0ECAF9E}gui/imagesets/dayz_gui@2x.edds"
+       mode blend
+       "src alpha" 1
+      }
+      ImageWidgetClass ConnectionLost {
+       visible 0
+       ignorepointer 1
+       color 1 0 0 1
+       position 0 52
+       size 32 32
+       halign center_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       image0 "set:dayz_gui image:conLost"
+       imageTexture "{C139E49FD0ECAF9E}gui/imagesets/dayz_gui@2x.edds"
+       mode blend
+       "src alpha" 1
+       "no wrap" 0
+       stretch 0
+      }
+     }
+    }
     GridSpacerWidgetClass StatusBars {
      visible 1
      clipchildren 0
@@ -5334,7 +5431,7 @@ FrameWidgetClass HudFrameWidget {
        style blank
       }
       PanelWidgetClass VehiclePanel {
-       visible 1
+       visible 0
        clipchildren 0
        position 0 40
        size 457 218
