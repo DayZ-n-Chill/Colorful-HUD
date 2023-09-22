@@ -1872,6 +1872,21 @@ FrameWidgetClass HudFrameWidget {
            "text halign" center
            "text valign" center
           }
+          ImageWidgetClass CompassArrow {
+           ignorepointer 1
+           position 56.8054 9.70895
+           size 0.2 0.3
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           scaled 1
+           imageTexture "Colorful-HUD/gui/textures/CompassArrow.edds"
+           mode blend
+           "src alpha" 1
+           "no wrap" 1
+           stretch 1
+          }
          }
         }
        }
