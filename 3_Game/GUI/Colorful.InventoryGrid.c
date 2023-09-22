@@ -1,14 +1,12 @@
-modded class InventoryGrid extends ScriptedWidgetEventHandler
+modded class InventoryGrid
 {
-	// AARRGGBB
-	static int ITEM_COLOR_QUICKBAR_NORMAL	= 0x0A000000;
-	static int ITEM_COLOR_QUICKBAR_H_GOOD	= 0x0A000000;
-	static int ITEM_COLOR_QUICKBAR_H_BAD	= 0x0A000000;
-	static int ITEM_COLOR_QUICKBAR_I_BAD	= 0x0A000000;
-	static int ITEM_COLOR_NORMAL			= 0x0A000000;
-	static int ITEM_COLOR_DRAG				= 0x0A000000;
+	const int ITEM_COLOR_QUICKBAR_NORMAL	= ARGB(10, 0, 0, 0);
+	const int ITEM_COLOR_QUICKBAR_H_GOOD	= ARGB(10, 0, 0, 0);
+	const int ITEM_COLOR_QUICKBAR_H_BAD		= ARGB(10, 0, 0, 0);
+	const int ITEM_COLOR_QUICKBAR_I_BAD		= ARGB(10, 0, 0, 0);
+	const int ITEM_COLOR_NORMAL				= ARGB(10, 0, 0, 0);
+	const int ITEM_COLOR_DRAG				= ARGB(10, 0, 0, 0);
 
-	//--------------------------------------------------------------------------
 	override void GenerateQuickBarBackgroundTiles(int count)
 	{
 		for (int i = 0; i < count; i++)
@@ -21,8 +19,7 @@ modded class InventoryGrid extends ScriptedWidgetEventHandler
 			m_BackgroundWidgets.Insert( i, root_widget );
 		}
 	}
-		
-	//--------------------------------------------------------------------------
+	
 	override void AddItem(InventoryItem item, vector data, vector rotation)
 	{
 		m_Items.Set(item, data);			

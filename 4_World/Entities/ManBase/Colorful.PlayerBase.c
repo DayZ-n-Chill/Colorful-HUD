@@ -1,141 +1,95 @@
-modded class PlayerBase extends ManBase
+modded class PlayerBase
 {
-    float 		angle;
-	float 		sHealth;
-	float 		sBlood;
-    float 		sEnergy;
-	float 		sWater;
-    string      sPlayerName;
-	string 		sPlayerUID;
-
+	protected int m_ClientHealthPercent;
+	protected int m_ClientBloodPercent;
+	protected int m_ClientEnergyPercent;
+	protected int m_ClientThirstPercent;
+	
     override void Init()
     {
         super.Init();
 
-		RegisterNetSyncVariableFloat("sHealth");
-		RegisterNetSyncVariableFloat("sBlood");
-		RegisterNetSyncVariableFloat("sEnergy");
-		RegisterNetSyncVariableFloat("sWater");
-
-		GetRPCManager().AddRPC("Statistics", "SyncPlayerNameResponse", this, SingeplayerExecutionType.Client);
-    }
-
-    int GetPlayerHealth() {	return sHealth;	}
-
-	void SetPlayerHealth(int value)
-    {
-		sHealth = value;
-		SetSynchDirty();
+		RegisterNetSyncVariableInt("m_ClientHealthPercent");
+		RegisterNetSyncVariableInt("m_ClientBloodPercent");
+		RegisterNetSyncVariableInt("m_ClientEnergyPercent");
+		RegisterNetSyncVariableInt("m_ClientThirstPercent");
 	}
 
-	void SetPlayerBlood(int value)
-    {
-		sBlood = value;
-		SetSynchDirty();
-	}
-
-	void SetPlayerEnergy(int value)
-    {
-		sEnergy = value;
-		SetSynchDirty();
-	}
-
-	void SetPlayerWater(int value)
-    {
-		sWater = value;
-		SetSynchDirty();
-	}
-
-	int GetPlayerBlood()
-    {
-		int bloodCalculated = sBlood - 2500;
-		int val = Math.Round((bloodCalculated / 2500) * 100);
-		return val;
-	}
-
-	int GetPlayerWater()
-    {
-		if (sWater <= 26)
-			return 1;
-        
-		if (sWater >= 2600)
-			return 100;
-        
-		int val = (sWater / 2600) * 100;
-		return val;
-	}
-
-	int GetPlayerFood()
-    {
-		if (sEnergy <= 26)
-			return 1;
-        
-		if (sEnergy >= 2600)
-			return 100;
-        
-		int val = (sEnergy / 2600) * 100;
-		return val;
-	}
-	
-	// string GetPlayerItemInHands()
-    // {
-	// 	string response = "Empty";
-
-	// 	if (GetItemInHands() && !GetCommand_Vehicle())
-	// 		response = GetItemInHands().GetDisplayName();
-	// 	else if (GetCommand_Vehicle())
-	// 		response = GetCommand_Vehicle().GetTransport().GetDisplayName();
-		
-	// 	return response;
-	// }
-
-    string GetPlayerName()
-    {
-        return sPlayerName;
-    }
-
-	string GetPlayerID() 
+	void SetClientHealth(float value)
 	{
-		return sPlayerUID;
+		m_ClientHealthPercent = value;
+		SetSynchDirty();
 	}
 
-    int calculatePlayerDirectionDegrees()
+	void SetClientBlood(float value)
+	{
+		m_ClientBloodPercent = ( value / GetMaxHealth( "","Blood" ) ) * 100;
+		SetSynchDirty();
+	}
+
+	void SetClientEnergy(float value)
+	{
+		m_ClientEnergyPercent = ( value / PlayerConstants.SL_ENERGY_MAX) * 100;
+		SetSynchDirty();
+	}
+
+	void SetClientThirst(float value)
+	{
+		m_ClientThirstPercent = ( value / PlayerConstants.SL_WATER_MAX) * 100;
+		SetSynchDirty();
+	}
+
+    int GetDirectionInDegrees()
     {
-        angle = GetGame().GetCurrentCameraDirection().VectorToAngles()[0];
+		float angle = GetGame().GetCurrentCameraDirection().VectorToAngles()[0];
         return angle;
     }
 
-    string calculatePlayerCardinalDirection(int direction)
-    {
-		if ((direction >= 0 && direction <= 20) || (direction >= 340 && direction <= 360)) 
-			return "N";
-		else if (direction <= 70 && direction > 20)
-			return "NE";
-		else if (direction > 70 && direction <= 110)
-			return "E";
-		else if (direction <= 160 && direction > 110)
-			return "SE";
-		else if (direction > 160 && direction <= 200)
-			return "S";
-		else if (direction <= 250 && direction > 200)
-			return "SW";
-		else if (direction > 250 && direction <= 290)
-			return "W";
-		else if (direction > 290 && direction < 340)
-			return "NW";
+	override EStatLevels GetStatLevelHealth()
+	{
+		SetClientHealth(GetHealth("","Health"));
 
-        return "ERROR1";
-    }
+		return super.GetStatLevelHealth();
+	}
+	
+	override EStatLevels GetStatLevelBlood()
+	{
+		SetClientBlood(GetHealth("","Blood"));
+		
+		return super.GetStatLevelBlood();
+	}
+	
+	override EStatLevels GetStatLevelEnergy()
+	{
+		SetClientEnergy(GetStatEnergy().Get());
+		
+		return super.GetStatLevelEnergy();
+	}
+	
+	override EStatLevels GetStatLevelWater()
+	{
+		SetClientThirst(GetStatWater().Get());
+		
+		return super.GetStatLevelWater();
+	}
 
-    void SyncPlayerNameResponse(CallType type, ParamsReadContext ctx, PlayerIdentity sender, Object target)
-    {
-		Param2<string, string> data;
+	int GetClientHealthPercent()
+	{
+		return m_ClientHealthPercent;
+	}
 
-		if (type == CallType.Client && GetGame().IsClient() || !GetGame().IsMultiplayer())
-		{
-			if (!ctx.Read(data)) return;
-			sPlayerName = data.param1;
-			sPlayerUID = data.param2;
-		}
+	int GetClientBloodPercent()
+	{
+		return m_ClientBloodPercent;
+	}
+
+	int GetClientEnergyPercent()
+	{
+		return m_ClientEnergyPercent;
+	}
+
+	int GetClientThirstPercent()
+	{
+		return m_ClientThirstPercent;
 	}
 };
