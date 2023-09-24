@@ -1,11 +1,11 @@
 modded class InventoryGrid
 {
-	const int ITEM_COLOR_QUICKBAR_NORMAL	= ARGB(10, 0, 0, 0);
-	const int ITEM_COLOR_QUICKBAR_H_GOOD	= ARGB(10, 0, 0, 0);
-	const int ITEM_COLOR_QUICKBAR_H_BAD		= ARGB(10, 0, 0, 0);
-	const int ITEM_COLOR_QUICKBAR_I_BAD		= ARGB(10, 0, 0, 0);
-	const int ITEM_COLOR_NORMAL				= ARGB(10, 0, 0, 0);
-	const int ITEM_COLOR_DRAG				= ARGB(10, 0, 0, 0);
+	static int ITEM_COLOR_QUICKBAR_NORMAL	= ARGB(10, 0, 0, 0);
+	static int ITEM_COLOR_QUICKBAR_H_GOOD	= ARGB(10, 0, 0, 0);
+	static int ITEM_COLOR_QUICKBAR_H_BAD	= ARGB(10, 0, 0, 0);
+	static int ITEM_COLOR_QUICKBAR_I_BAD	= ARGB(10, 0, 0, 0);
+	static int ITEM_COLOR_NORMAL			= ARGB(10, 0, 0, 0);
+	static int ITEM_COLOR_DRAG				= ARGB(10, 0, 0, 0);
 
 	override void GenerateQuickBarBackgroundTiles(int count)
 	{

@@ -26,11 +26,9 @@ modded class ItemActionsWidget
     	// Retrieve actions and entity in the player's hands
 		GetActions();
 		GetEntityInHands();
-		
-		bool isDoingSomething = m_Interact || m_ContinuousInteract || m_Single || m_Continuous;
 
 		// Check if the game menu is not open and there are interaction-related elements
-    	if(GetGame().GetUIManager().GetMenu() == NULL && m_EntityInHands && !isDoingSomething)
+    	if(GetGame().GetUIManager().GetMenu() == NULL && (m_EntityInHands || !m_Hidden) )
 		{
 			CheckForActionWidgetOverrides();
 			BuildCursor();
