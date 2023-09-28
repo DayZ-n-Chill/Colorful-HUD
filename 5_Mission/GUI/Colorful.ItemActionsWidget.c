@@ -28,7 +28,7 @@ modded class ItemActionsWidget
 		GetEntityInHands();
 
 		// Check if the game menu is not open and there are interaction-related elements
-    	if(GetGame().GetUIManager().GetMenu() == NULL && (m_EntityInHands || !m_Hidden) )
+    	if(GetGame().GetUIManager().GetMenu() == NULL && (m_EntityInHands || m_Hidden) )
 		{
 			CheckForActionWidgetOverrides();
 			BuildCursor();
