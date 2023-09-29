@@ -15,7 +15,7 @@ modded class MissionGameplay
 	TextWidget m_HungerValueText;
 	ref array<TextWidget> m_HealthWidgets;
 
-	private PlayerBase m_Player;
+	private static PlayerBase m_Player;
 
 	static int WHITE_COLOR 			= ARGB(255, 255, 255, 255);
 	static int LIGHT_YELLOW_COLOR 	= ARGB(255, 247, 226, 126);
@@ -24,7 +24,7 @@ modded class MissionGameplay
 	static int DARK_ORANGE_COLOR 	= ARGB(255, 241, 144, 24);
 	static int DARK_RED_COLOR 		= ARGB(255, 204, 51, 51);
 
-	const autoptr TStringArray CARDINAL_DIRECTIONS = {"N", "NE", "E", "SE", "S", "SW", "W", "NW"};
+	static autoptr TStringArray CARDINAL_DIRECTIONS = {"N", "NE", "E", "SE", "S", "SW", "W", "NW"};
 
     override void OnInit() 
     {
@@ -86,21 +86,25 @@ modded class MissionGameplay
 			m_CompassFrame.Show(true);
 		}
 
-		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(UpdatePlayerHUDCompass, 75, true);
-		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(UpdatePlayerHUD, 150, true);
+		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(UpdatePlayerInfo, 75, true);
     }
 
 	void ~MissionGameplay() 
 	{
-		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Remove(UpdatePlayerHUDCompass);
-		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Remove(UpdatePlayerHUD);
+		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Remove(UpdatePlayerInfo);
 	}
 
-	void UpdatePlayerHUDCompass()
+	void UpdatePlayerInfo()
 	{
 		if (!CastPlayer())
 			return;
-		
+
+		UpdatePlayerHUDCompass();
+		UpdatePlayerHUD();
+	}
+
+	protected void UpdatePlayerHUDCompass()
+	{
 		if ( m_Hud.IsHudVisible() != m_CompassFrame.IsVisible() )
 			m_CompassFrame.Show(m_Hud.IsHudVisible());
 
@@ -112,11 +116,8 @@ modded class MissionGameplay
 		m_CompassArrow.SetRotation( 0, 0, currentPlayerDirection );
 	}
 
-	void UpdatePlayerHUD() 
+	protected void UpdatePlayerHUD() 
 	{
-		if ( !CastPlayer() )
-			return;
-
 		for ( int i = 0; i < m_HealthWidgets.Count(); i++ )
 		{
 			auto m_StatWidget = m_HealthWidgets[i];
@@ -163,7 +164,7 @@ modded class MissionGameplay
 	}
 
 	// Val is meant to be between 0 and 100
-	int CalculateColor(int val)
+	static int CalculateColor(int val)
 	{
 		if (val >= 85)
 			return WHITE_COLOR;
@@ -182,7 +183,7 @@ modded class MissionGameplay
 		return DARK_RED_COLOR;
 	}
 
-	private bool CastPlayer()
+	static bool CastPlayer()
 	{
 		if ( m_Player )
 			return true;
@@ -192,7 +193,7 @@ modded class MissionGameplay
 		return m_Player != NULL;
 	}
 
-    string GetCardinalDirection(int direction)
+    static string GetCardinalDirection(int direction)
     {
 		if (direction < 0 || direction > 360)
 			return "ERROR: Invalid direction";
