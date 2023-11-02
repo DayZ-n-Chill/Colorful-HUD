@@ -38,7 +38,7 @@ modded class MissionGameplay
 		if ( m_HudRootWidget )
 		{
 			m_HudRootWidget	= GetGame().GetWorkspace().CreateWidgets("Colorful-HUD/GUI/layouts/Colorful.day_z_hud.layout");
-			m_HudRootWidget.Show(true);
+		
 
 			m_Chat.Init( m_HudRootWidget.FindAnyWidget("ChatFrameWidget") );
 			m_ActionMenu.Init( m_HudRootWidget.FindAnyWidget("ActionsPanel"), TextWidget.Cast( m_HudRootWidget.FindAnyWidget("DefaultActionWidget") ) );	
@@ -83,7 +83,8 @@ modded class MissionGameplay
 			m_HealthWidgets.Insert(m_ThirstValueText);
 			m_HealthWidgets.Insert(m_HungerValueText);
 			m_HealthWidgets.Insert(m_HealthValueText);
-			m_CompassFrame.Show(true);
+			m_CompassFrame.Show(false);
+			m_HudRootWidget.Show(false);
 		}
 
 		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(UpdatePlayerInfo, 75, true);
@@ -109,6 +110,7 @@ modded class MissionGameplay
 			m_CompassFrame.Show(m_Hud.IsHudVisible());
 
 		int currentPlayerDirection = m_Player.GetDirectionInDegrees();
+		float northDirection = 360 - currentPlayerDirection;
 		string currentPlayerCardinalDirection = GetCardinalDirection( currentPlayerDirection );
 		
 		m_Heading.SetText( string.Format("%1", currentPlayerDirection) + "°" );
