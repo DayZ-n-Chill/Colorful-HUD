@@ -25,9 +25,12 @@ modded class MissionGameplay
 	static int DARK_RED_COLOR 		= ARGB(255, 204, 51, 51);
 
 	static autoptr TStringArray CARDINAL_DIRECTIONS = {"N", "NE", "E", "SE", "S", "SW", "W", "NW"};
+	
+	bool m_IsCompassPointingNorth = true;
 
     override void OnInit() 
     {
+		
         super.OnInit();
 
 		m_UIManager = GetGame().GetUIManager();
@@ -104,6 +107,7 @@ modded class MissionGameplay
 		UpdatePlayerHUD();
 	}
 
+	
 	protected void UpdatePlayerHUDCompass()
 	{
 		if ( m_Hud.IsHudVisible() != m_CompassFrame.IsVisible() )
