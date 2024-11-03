@@ -115,7 +115,7 @@ modded class MissionGameplay
 		
 		m_Heading.SetText( string.Format("%1", currentPlayerDirection) + "°" );
 		m_CardinalDirection.SetText( currentPlayerCardinalDirection );
-		m_CompassArrow.SetRotation( 0, 0, currentPlayerDirection );
+		m_CompassArrow.SetRotation( 0, 0, northDirection );
 	}
 
 	protected void UpdatePlayerHUD() 
