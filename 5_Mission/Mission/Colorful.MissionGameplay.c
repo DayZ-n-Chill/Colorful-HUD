@@ -15,7 +15,7 @@ modded class MissionGameplay
 	TextWidget m_HungerValueText;
 	ref array<TextWidget> m_HealthWidgets;
 
-	private static PlayerBase m_Player;
+	protected static PlayerBase m_CustomPlayer;
 
 	static int WHITE_COLOR 			= ARGB(255, 255, 255, 255);
 	static int LIGHT_YELLOW_COLOR 	= ARGB(255, 247, 226, 126);
@@ -113,7 +113,7 @@ modded class MissionGameplay
 		if ( m_Hud.IsHudVisible() != m_CompassFrame.IsVisible() )
 			m_CompassFrame.Show(m_Hud.IsHudVisible());
 
-		int currentPlayerDirection = m_Player.GetDirectionInDegrees();
+		int currentPlayerDirection = m_CustomPlayer.GetDirectionInDegrees();
 		float northDirection = 360 - currentPlayerDirection;
 		string currentPlayerCardinalDirection = GetCardinalDirection( currentPlayerDirection );
 		
@@ -131,7 +131,7 @@ modded class MissionGameplay
 			{
 				case "HealthValueText":
 				{
-					int currentHealth = m_Player.GetClientHealthPercent();
+					int currentHealth = m_CustomPlayer.GetClientHealthPercent();
 
 					m_StatWidget.SetText(string.Format("%1", currentHealth) + "%");
 					m_StatWidget.SetColor(CalculateColor(currentHealth));
@@ -140,7 +140,7 @@ modded class MissionGameplay
 				}
 				case "BloodValueText":
 				{
-					int currentBlood = m_Player.GetClientBloodPercent();
+					int currentBlood = m_CustomPlayer.GetClientBloodPercent();
 
 					m_StatWidget.SetText(string.Format("%1", currentBlood) + "%");
 					m_StatWidget.SetColor(CalculateColor(currentBlood));
@@ -149,7 +149,7 @@ modded class MissionGameplay
 				}
 				case "ThirstValueText":
 				{
-					int currentThisrt = m_Player.GetClientThirstPercent();
+					int currentThisrt = m_CustomPlayer.GetClientThirstPercent();
 
 					m_StatWidget.SetText(string.Format("%1", currentThisrt) + "%");
 					m_StatWidget.SetColor(CalculateColor(currentThisrt));
@@ -158,7 +158,7 @@ modded class MissionGameplay
 				}
 				case "HungerValueText":
 				{
-					int currentHunger = m_Player.GetClientEnergyPercent();
+					int currentHunger = m_CustomPlayer.GetClientEnergyPercent();
 
 					m_StatWidget.SetText(string.Format("%1", currentHunger) + "%");
 					m_StatWidget.SetColor(CalculateColor(currentHunger));
@@ -191,12 +191,12 @@ modded class MissionGameplay
 
 	static bool CastPlayer()
 	{
-		if ( m_Player )
+		if ( m_CustomPlayer )
 			return true;
 
-		m_Player = PlayerBase.Cast(GetGame().GetPlayer());
+		m_CustomPlayer = PlayerBase.Cast(GetGame().GetPlayer());
 		
-		return m_Player != NULL;
+		return m_CustomPlayer != NULL;
 	}
 
     static string GetCardinalDirection(int direction)
